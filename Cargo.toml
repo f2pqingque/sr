@@ -1,0 +1,39 @@
+[workspace]
+members = []
+resolver = "2"
+
+[workspace.package]
+# name = "qingque-sr"
+version = "3.0.0"
+edition = "2024"
+authors = ["Yulian <yuvlian@naver.com>"]
+license = "MIT"
+description = "SR calyx simulator"
+homepage = "https://github.com/f2pqingque/sr"
+repository = "https://github.com/f2pqingque/sr"
+readme = "README.md"
+
+[workspace.dependencies]
+sr-proto = { git = "https://github.com/f2pqingque/sr-proto", rev = "0612b5f" }
+
+[profile.release]
+strip = true
+lto = true
+opt-level = 3
+codegen-units = 1
+panic = "abort"
+
+[profile.release.build-override]
+strip = true
+opt-level = 3
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+panic = "abort"
+incremental = true
+codegen-units = 384
+
+[profile.dev.build-override]
+incremental = true
+codegen-units = 384
